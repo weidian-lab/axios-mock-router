@@ -1,0 +1,9 @@
+**/*.test.js
+coverage/
+src/
+makefile
+.eslintrc.js
+yarn.lock
+.babelrc
+.travis.yml
+secrets/
