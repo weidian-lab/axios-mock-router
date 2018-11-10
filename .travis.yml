@@ -1,0 +1,17 @@
+sudo: false
+language: node_js
+node_js:
+  - 8
+  - 10
+git:
+  depth: 3
+cache: yarn
+services:
+  - redis-server
+install:
+  - make install
+script:
+  - jsinspect -m 3 src
+  - make test
+after_success:
+  - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js

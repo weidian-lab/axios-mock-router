@@ -6,4 +6,3 @@ makefile
 yarn.lock
 .babelrc
 .travis.yml
-secrets/
