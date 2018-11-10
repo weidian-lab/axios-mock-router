@@ -38,7 +38,7 @@ describe('axios-mock-router', () => {
       expect(res).toHaveProperty('data', 'baidu')
       expect(res).toHaveProperty('status', 200)
       res = await instance.get('https://www.baidu.com')
-      expect(res.data.startsWith('<html>')).toBe(true)
+      expect(res.data.includes('<html>')).toBe(true)
       expect(res).toHaveProperty('status', 200)
     })
   })
