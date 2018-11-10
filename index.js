@@ -21,7 +21,9 @@ class RouterAdapter {
     this.routes = this.routes || this.router.routes();
     const {
       hostname, protocol, pathname, query,
-    } = parse({ url });
+    } = parse({
+      url: this.axiosInstance.getUri(config)
+    });
     const ctx = {
       path: hostname ? `${protocol}//${hostname}${pathname}` : pathname,
       request: { body },
