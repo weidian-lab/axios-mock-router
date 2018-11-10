@@ -4,6 +4,8 @@
 [![Coverage Status](https://coveralls.io/repos/github/sqlwwx/axios-mock-router/badge.svg?branch=master)](https://coveralls.io/github/sqlwwx/axios-mock-router?branch=master)
 [![Greenkeeper badge](https://badges.greenkeeper.io/sqlwwx/axios-mock-router.svg)](https://greenkeeper.io/)
 ![npm](https://img.shields.io/npm/dt/axios-mock-router.svg)
+[![codebeat badge](https://codebeat.co/badges/8cecad6a-6ff0-412e-8397-ee6227784697)](https://codebeat.co/projects/github-com-sqlwwx-axios-mock-router-master)
+
 
 ## example
 
