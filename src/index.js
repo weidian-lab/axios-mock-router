@@ -11,14 +11,20 @@ class RouterAdapter {
     this.axiosInstance.defaults.adapter = this.adapter.bind(this)
   }
 
+  get routes () {
+    if (!this._routes) {
+      this._routes = this.router.routes()
+    }
+    return this._routes
+  }
+
   adapter (config) {
     return this.handleRequest(config)
       .catch(() => this.originalAdapter(config))
   }
 
-  handleRequest (config) {
+  createContext (config) {
     const { data: body, method } = config
-    this.routes = this.routes || this.router.routes()
     const {
       hostname, protocol, pathname, query
     } = parse({
@@ -29,7 +35,7 @@ class RouterAdapter {
       parsedBody = JSON.parse(body)
     } catch (e) {
     }
-    const ctx = {
+    return {
       path: hostname ? `${protocol}//${hostname}${pathname}` : pathname,
       request: { body: parsedBody || body },
       res: { },
@@ -37,7 +43,12 @@ class RouterAdapter {
       query: qs.parse(query),
       method: method.toUpperCase()
     }
-    return this.routes(ctx, () => Promise.reject(new Error('404')))
+  }
+
+  handleRequest (config) {
+    let ctx = this.createContext(config)
+    return this.routes(
+      ctx, () => Promise.reject(new Error('404')))
       .then(() => Promise.resolve({
         status: ctx.status || 200,
         data: ctx.body,
@@ -50,7 +61,7 @@ class RouterAdapter {
 methods.forEach((method) => {
   RouterAdapter.prototype[method] = function (...args) {
     this.router[method](...args)
-    this.routes = undefined
+    this._routes = undefined
     return this
   }
 })
