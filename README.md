@@ -1,5 +1,10 @@
 # axios-mock-router
 
+[![Build Status](https://travis-ci.org/sqlwwx/axios-mock-router.svg?branch=master)](https://travis-ci.org/sqlwwx/axios-mock-router)
+[![Coverage Status](https://coveralls.io/repos/github/sqlwwx/axios-mock-router/badge.svg?branch=master)](https://coveralls.io/github/sqlwwx/axios-mock-router?branch=master)
+[![Greenkeeper badge](https://badges.greenkeeper.io/sqlwwx/axios-mock-router.svg)](https://greenkeeper.io/)
+![npm](https://img.shields.io/npm/dt/axios-mock-router.svg)
+
 ## example
 
 ```
