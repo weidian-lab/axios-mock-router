@@ -2,6 +2,7 @@ const Router = require('koa-router')
 const parse = require('parseurl')
 const qs = require('querystring')
 const methods = require('methods')
+const settle = require('axios/lib/core/settle')
 
 class RouterAdapter {
   constructor (axiosInstance) {
@@ -48,13 +49,21 @@ class RouterAdapter {
   handleRequest (config) {
     let ctx = this.createContext(config)
     return this.routes(
-      ctx, () => Promise.reject(new Error('404')))
-      .then(() => Promise.resolve({
-        status: ctx.status || 200,
-        data: ctx.body,
-        headers: [],
-        config
-      }))
+      ctx, (err) => {
+        return Promise.reject(err || new Error('404'))
+      })
+      .then(() => {
+        return new Promise((resolve, reject) => {
+          settle(resolve, reject, {
+            data: ctx.body,
+            status: ctx.status || 200,
+            statusText: '',
+            headers: [],
+            config,
+            request: ctx.request
+          })
+        })
+      })
   }
 }
 
