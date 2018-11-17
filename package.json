@@ -8,6 +8,10 @@
   },
   "author": "sqlwwx <wwx_2012@live.com> (http://wiki.lab.wuweixing.com)",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sqlwwx/axios-mock-router/issues"
+  },
+  "homepage": "https://github.com/sqlwwx/axios-mock-router#readme",
   "dependencies": {
     "koa-router": "^7.4.0",
     "methods": "^1.1.2",
