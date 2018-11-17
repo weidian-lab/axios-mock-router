@@ -21,7 +21,12 @@ class RouterAdapter {
 
   adapter (config) {
     return this.handleRequest(config)
-      .catch(() => this.originalAdapter(config))
+      .catch((error) => {
+        if (!error.response) {
+          return this.originalAdapter(config)
+        }
+        return Promise.reject(error)
+      })
   }
 
   createContext (config) {

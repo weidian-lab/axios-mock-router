@@ -137,4 +137,13 @@ describe('axios-mock-router', () => {
       })
     })
   })
+  it('error status', async () => {
+    router.get('/500', (ctx) => {
+      ctx.status = 500
+    }).get('/403', (ctx) => {
+      ctx.status = 403
+    })
+    expect(instance.get('/500')).rejects.toHaveProperty('response.status', 500)
+    expect(instance.get('/404')).rejects.toHaveProperty('response.status', 403)
+  })
 })
