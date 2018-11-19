@@ -146,4 +146,12 @@ describe('axios-mock-router', () => {
     expect(instance.get('/500')).rejects.toHaveProperty('response.status', 500)
     expect(instance.get('/404')).rejects.toHaveProperty('response.status', 403)
   })
+  it('mock with port', async () => {
+    router.get('http://test.com', (ctx) => {
+      ctx.body = 'test'
+    })
+    let res = await instance.get('http://test.com')
+    expect(res).toHaveProperty('data', 'test')
+    expect(res).toHaveProperty('status', 200)
+  })
 })

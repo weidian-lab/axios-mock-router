@@ -32,7 +32,7 @@ class RouterAdapter {
   createContext (config) {
     const { data: body, method } = config
     const {
-      hostname, protocol, pathname, query
+      host, protocol, pathname, query
     } = parse({
       url: this.axiosInstance.getUri(config)
     })
@@ -42,7 +42,7 @@ class RouterAdapter {
     } catch (e) {
     }
     return {
-      path: hostname ? `${protocol}//${hostname}${pathname}` : pathname,
+      path: host ? `${protocol}//${host}${pathname}` : pathname,
       request: { body: parsedBody || body },
       res: { },
       querystring: query,
